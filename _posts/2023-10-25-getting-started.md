@@ -6,7 +6,6 @@ categories: [Blogging, Tutorial]
 tags: [math notes]
 math: true
 pin: true
-img_path: '/assets/source'
 ---
 
 # 数值分析
