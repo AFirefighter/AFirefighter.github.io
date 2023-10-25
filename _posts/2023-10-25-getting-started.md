@@ -12,7 +12,6 @@ img_path: '/assets/source'
 # 数值分析
 这里是latex数学公式的markdown语法。便于平时使用时查找。
 
-!(latex math)[latex_math.png]
 
 $$ f(x+\Delta x)=f(x) + J(x)^T\Delta x + \frac{1}{2}\Delta x^TH(x)\Delta x $$
 
