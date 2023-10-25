@@ -2,7 +2,8 @@
 # the default layout is 'page'
 icon: fas fa-info-circle
 order: 4
+math: true
 ---
 
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
+> 这是GGY的一些笔记
 {: .prompt-tip }
