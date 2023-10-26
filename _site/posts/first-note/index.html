@@ -38,8 +38,8 @@
 <meta property="og:title" content="数值分析和概率" />
 <meta name="author" content="ygg" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="你好，这里是易桂光的笔记。关于数值计算的内容。" />
-<meta property="og:description" content="你好，这里是易桂光的笔记。关于数值计算的内容。" />
+<meta name="description" content="矩阵的特征值与正定性" />
+<meta property="og:description" content="矩阵的特征值与正定性" />
 <link rel="canonical" href="http://localhost:4000/posts/first-note/" />
 <meta property="og:url" content="http://localhost:4000/posts/first-note/" />
 <meta property="og:site_name" content="GGY’s notes" />
@@ -50,7 +50,7 @@
 <meta name="twitter:site" content="@twitter_username" />
 <meta name="twitter:creator" content="@None" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"ygg","url":"https://github.com/AFirefighter/"},"dateModified":"2023-10-25T22:08:20+08:00","datePublished":"2023-10-25T14:10:00+08:00","description":"你好，这里是易桂光的笔记。关于数值计算的内容。","headline":"数值分析和概率","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/first-note/"},"url":"http://localhost:4000/posts/first-note/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"ygg","url":"https://github.com/AFirefighter/"},"dateModified":"2023-10-25T22:08:20+08:00","datePublished":"2023-10-25T14:10:00+08:00","description":"矩阵的特征值与正定性","headline":"数值分析和概率","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/first-note/"},"url":"http://localhost:4000/posts/first-note/"}</script>
 <!-- End Jekyll SEO tag -->
 
   
@@ -556,10 +556,118 @@
   
 
   
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
 
   
   
 
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
   
 
   
@@ -675,9 +783,9 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="28 words"
+  title="789 words"
 >
-  <em>1 min</em> read</span>
+  <em>4 min</em> read</span>
 
       </div>
       <!-- .d-flex -->
@@ -686,9 +794,92 @@
   </header>
 
   <div class="content">
-    <p>你好，这里是易桂光的笔记。关于数值计算的内容。</p>
+    <h2 id="矩阵的特征值与正定性"><span class="me-2">矩阵的特征值与正定性</span><a href="#矩阵的特征值与正定性" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-\[f(x) = sin(x) + x^2\]
+<p>我们尝试寻找n阶方阵A的<strong>相似标准型</strong>，它是一个形式简单的对角阵，也就是寻找一个矩阵P，使得</p>
+
+\[P^{-1}AP=\Lambda\]
+
+<p>由此，可以定义<strong>特征值</strong>，<strong>特征向量</strong>概念。</p>
+
+<p>设A是数域P上的n阶方阵，若存在$\lambda_0\in P$和非零向量$\xi$使得$A\xi=\lambda_0\xi$，则称$\xi$是属于特征值$\lambda_0$的一个特征向量。可以容易地证明（构造P为特征列向量的组合），方阵可以对角化的充要条件是有n个线性无关的特征向量。至于特征值和特征向量的求解，可以依下式</p>
+
+\[\forall \lambda_0\ of \ A,| \lambda_0E-A|=0\\ (\lambda_0E-A)X=O,nonzero \ root\]
+
+<p>但是也有的方阵不能相似于某个对角阵，对于这类矩阵，我们需要引入Jordan标准型。</p>
+
+<p><strong>二次型</strong>是一种二次齐次多项式，可以表示为$x^TAy$的形式。一个方阵被称为<strong>正定</strong>，即对任意向量x，都满足有$x^TAx&gt;0$。同样地，可以定义负定（&lt;0）和半正定（&gt;=0）。</p>
+
+<h2 id="牛顿法求解无约束优化"><span class="me-2">牛顿法求解无约束优化</span><a href="#牛顿法求解无约束优化" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<h3 id="基本形式"><span class="me-2">基本形式</span><a href="#基本形式" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>无约束问题的一般表达，对于n元实值函数f，求其最小值和取到最小值时的参数$x^*$:</p>
+
+\[x^*=argminf(x), x\in R^n\]
+
+<p>采用迭代法计算，首先随机（或者按一定策略）选取初始值x^(0)，然后迭代求解至误差在可接受范围内，将f在x^(k)附近泰勒展开，记J(x)为Jacobian矩阵，而H(x)为Hessian矩阵。</p>
+
+\[f(x)=f(x^k)+J(x^k)^T(x-x^k)+\frac{1}{2}(x-x^k)^TH(x^k)(x-x^k)+o(x-x^k)^2\]
+
+<p>这样，可以得到拟合版本的f(x)（去掉皮亚诺余项），对其求梯度</p>
+
+\[\nabla f(x)=J(x^k)+H(x^k)(x-x^k) (B1)\]
+
+<p>令梯度为0，则有</p>
+
+\[x^{k+1}=x^{k}-H(x^k)^{-1}J(x^k)(B2)\]
+
+<p>在这个迭代式中，计算hessian矩阵的逆是开销最大的步骤。</p>
+
+<h3 id="拟牛顿法"><span class="me-2">拟牛顿法</span><a href="#拟牛顿法" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>由于在牛顿法中需要计算H(x)^-1，这个步骤开销较大，考虑使用G_k来替换H_k^-1以减少计算量是拟牛顿法的基本思路。</p>
+
+<p>根据上述B1式，将x取值为$x^{k+1}$得到</p>
+
+\[J_{k+1}-J_k=H_k(x^{k+1}-x^k)\]
+
+<p>注意，这里的$J_{k+1}$是近似的，因为它是舍弃了高阶展开项之后的近似函数的梯度。</p>
+
+<p>记$y_k=J_{k+1}-J_k,\delta_k=x^{k+1}-x^k$，从中得到</p>
+
+\[H_k^{-1}y_k=\delta_k\]
+
+<p>这个条件称之为<strong>拟牛顿条件。</strong>如果H_k是正定的，那么牛顿法的搜索方向是下降的，由B2</p>
+
+\[x^{k+1}=x^k-\lambda H_K^{-1}J_k \\ f(x^{k+1})=f(x^k)-\lambda J_k^T H_k^{-1}J_k\]
+
+<p>由于$H_k$是正定的，所以可以知道减去的这一项是正的，也即搜索方向是下降的。</p>
+
+<p><strong>不过，拟牛顿条件的作用尚不明确。</strong></p>
+
+<h3 id="bfgs算法"><span class="me-2">BFGS算法</span><a href="#bfgs算法" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>在BFGS算法中，考虑使用B_k来逼近Hessian矩阵H_k。拟牛顿条件如下。拟牛顿条件和H_k是错开一个下标的。</p>
+
+\[B_{k+1}\delta_{k}=y_k\]
+
+<p>令</p>
+
+\[\begin{aligned}   &amp;B_{k+1}=B_{k}+P_{k}+Q_{k} \\ &amp;B_{k+1}\delta_{k}=B_{k}\delta_{k}+P_{k}\delta_{k}+Q_k\delta_{k}\end{aligned}\]
+
+<p>然后通过一种简单的构造</p>
+
+\[\begin{aligned}   &amp;P_k\delta_{k}=y_k \\ &amp;Q_k\delta_{k}=-B_k\delta_{k}\end{aligned}\]
+
+<p>即可计算出B_k的迭代公式</p>
+
+\[B_{k+1}=B_{k}+\frac{y_ky_k^{T}}{y_k^T\delta_{k}}-\frac{B_k\delta_k\delta_{k}^TB_k}{\delta_{k}^TB_k\delta_k}\]
+
+<p>可以证明的是如果B_0是正定的，B_k都是正定的。</p>
+
+<h2 id="数值微积分"><span class="me-2">数值微积分</span><a href="#数值微积分" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<h3 id="数值微分"><span class="me-2">数值微分</span><a href="#数值微分" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<h3 id="数值积分"><span class="me-2">数值积分</span><a href="#数值积分" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
 
   </div>
 
@@ -888,6 +1079,11 @@
 
 
 
+  <section id="toc-wrapper" class="ps-0 pe-4">
+    <h2 class="panel-heading ps-3 pt-2 mb-2">Contents</h2>
+    <nav id="toc"></nav>
+  </section>
+
 
             
           </aside>
@@ -924,6 +1120,18 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
     
 
 
@@ -934,6 +1142,59 @@
 
 
 
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/cpp-learning/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1698300600"
+  data-df="ll"
+  
+>
+  Oct 26, 2023
+</time>
+
+              <h4 class="pt-0 my-2">cpp学习</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  lambda表达式
+
+1
+2
+3
+void test_lambda() {
+    int a[]() {};
+}
+
+
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
 
 
             
@@ -951,9 +1212,13 @@
   
 
   
-    <div class="btn btn-outline-primary disabled" aria-label="Newer">
-      <p>-</p>
-    </div>
+    <a
+      href="/posts/cpp-learning/"
+      class="btn btn-outline-primary"
+      aria-label="Newer"
+    >
+      <p>cpp学习</p>
+    </a>
   
 </nav>
 
@@ -1182,9 +1447,16 @@
 
   
 
+  
+    
+
+    
+
+  
 
 
-  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/en.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/en.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.21.2/dist/tocbot.min.js"></script>
 
 
 
