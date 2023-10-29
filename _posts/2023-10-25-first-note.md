@@ -20,7 +20,7 @@ $$
 设A是数域P上的n阶方阵，若存在$\lambda_0\in P$和非零向量$\xi$使得$A\xi=\lambda_0\xi$，则称$\xi$是属于特征值$\lambda_0$的一个特征向量。可以容易地证明（构造P为特征列向量的组合），方阵可以对角化的充要条件是有n个线性无关的特征向量。至于特征值和特征向量的求解，可以依下式
 
 $$
-\forall \lambda_0\ of \ A,| \lambda_0E-A|=0\\ (\lambda_0E-A)X=O,nonzero \ root
+\forall \lambda_0\ of \ A,| \lambda_0E-A|=0, (\lambda_0E-A)X=O,nonzero \ root
 $$
 
 但是也有的方阵不能相似于某个对角阵，对于这类矩阵，我们需要引入Jordan标准型。
