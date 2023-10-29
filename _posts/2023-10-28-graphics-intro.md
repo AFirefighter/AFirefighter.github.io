@@ -42,6 +42,8 @@ $$
 \mathbf{R(\mathbf{n},\alpha)}=\cos(\alpha)\mathbf{I}+(1-\cos(\alpha))\mathbf{n}\mathbf{n}^T+\sin(\alpha) \left(\begin{array}{cc}0 &-n_z & n_y \\ n_z & 0 & -n_x \\ -n_y & n_x & 0 \end{array} \right)
 $$
 
+![calf](/assets/source/circle_cow.gif)
+
 **Viewing （观测） transformation**
 
 - Projection （投影） transformation
