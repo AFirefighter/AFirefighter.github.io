@@ -12,6 +12,18 @@ math: true
 ## 参数化曲面
 参数化曲面（parametric surface）指的是用一个定义在二维流形上的连续函数f来刻画曲面。参数域就是二维流形，值域是$$ \mathbb{R}^3 $$的子空间。
 
+> 什么是流形？
+{: .prompt-tip }
+
+> 什么是流形？
+{: .prompt-info }
+
+> 什么是流形？
+{: .prompt-warning }
+
+> 什么是流形？
+{: .prompt-danger }
+
 $$
 f(\mathbf{u})=\mathbf{p}\in \mathbb{R}^3;\mathbf{u}\in \mathcal{M}
 $$
@@ -28,27 +40,31 @@ $$
 S=\{\mathbf{p}|f(\mathbf{p})=0\}
 $$
 
-## neural representation
-
-# 光栅化
-
-所谓光栅化，就是指将三维空间中的物体绘制到二维的屏幕上。
-
-**Transformation。**这个词指的是物体的移动变换，包括平移（translation），伸缩（scale）和旋转（rotation），不包括任何形变（deformation）。这三种变换可以用矩阵来表示，在3维情形下，一个3x3的矩阵能够表示旋转和伸缩的组合，但是不能表示平移。为了把平移统一到矩阵表示之中，需要使用齐次坐标，即增加一个维度，w，取值为1时表示点，取值为0时表示向量。一个w不为零的点$(x,y,z,w)$表示的点坐标为$(x/w,y/w,z/w)$。
-
-**Rodrigues’ Rotation Formula**
-以矢量$$\mathbf{n}$$为转轴，转过角度$$\alpha$$，其旋转矩阵
-$$
-\mathbf{R(\mathbf{n},\alpha)}=\cos(\alpha)\mathbf{I}+(1-\cos(\alpha))\mathbf{n}\mathbf{n}^T+\sin(\alpha) \left(\begin{array}{cc}0 &-n_z & n_y \\ n_z & 0 & -n_x \\ -n_y & n_x & 0 \end{array} \right)
-$$
-
-![calf](/assets/source/circle_cow.gif)
-
-**Viewing （观测） transformation**
-
-- Projection （投影） transformation
-- Orthographic （正交） projection
-- Perspective （透视） projection
+## Neural Representation
 
 
 ## MVP Transformation
+
+所谓光栅化，就是指将三维空间中的物体绘制到二维的屏幕上。首先，在三维空间中描述物体的变换可以在齐次坐标下写成矩阵乘的形式，这是**模型变换**（model transformation）；然后，根据相机距离和位置，进行**视图变换**（view/camera transformation），最后**投影变换**到二维的屏幕上（projection transformation）。
+
+**Affine Transformation**指的是物体的仿射变换，包括平移（translation），伸缩（scale）和旋转（rotation），不包括任何形变（deformation）。这三种变换可以用矩阵来表示，在3维情形下，一个3x3的矩阵能够表示旋转和伸缩的组合，但是不能表示平移。为了把平移统一到矩阵表示之中，需要使用齐次坐标，即增加一个维度，w，取值为1时表示点，取值为0时表示向量。一个w不为零的点$(x,y,z,w)$表示的点坐标为$(x/w,y/w,z/w)$。
+
+伸缩和平移矩阵。
+$$
+S=\left(\begin{array}{cc}s_x &0 & 0 & 0\\ 0 & s_y & 0 & 0\\ 0 & 0 & s_z &0 \\ 0 & 0 & 0 &1 \end{array} \right)
+T=\left(\begin{array}{cc}1 &0 & 0 & t_x\\ 0 & 1 & 0 & t_y\\ 0 & 0 & 1 &t_z \\ 0 & 0 & 0 &1 \end{array} \right)
+$$
+
+**Rodrigues’ Rotation Formula**
+
+以矢量$$\mathbf{n}$$为转轴，转过角度$$\alpha$$，其旋转矩阵
+$$
+\mathbf{R}(\mathbf{n},\alpha)=\cos(\alpha)\mathbf{I}+(1-\cos(\alpha))\mathbf{n}\mathbf{n}^T+\sin(\alpha) \left(\begin{array}{cc}0 &-n_z & n_y \\ n_z & 0 & -n_x \\ -n_y & n_x & 0 \end{array} \right)
+$$
+
+**Viewing （观测） transformation**
+- Camera transformation
+- Projection （投影） transformation
+    - Orthographic （正交） projection
+    - Perspective （透视） projection
+
