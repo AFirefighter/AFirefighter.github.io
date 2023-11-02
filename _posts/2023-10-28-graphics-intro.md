@@ -51,7 +51,7 @@ $$
 
 伸缩和平移矩阵。
 $$
-S=\left(\begin{array}{cc}s_x &0 & 0 & 0\\ 0 & s_y & 0 & 0\\ 0 & 0 & s_z &0 \\ 0 & 0 & 0 &1 \end{array} \right)
+S=\left(\begin{array}{cc}s_x &0 & 0 & 0\\ 0 & s_y & 0 & 0\\ 0 & 0 & s_z &0 \\ 0 & 0 & 0 &1 \end{array} \right),
 T=\left(\begin{array}{cc}1 &0 & 0 & t_x\\ 0 & 1 & 0 & t_y\\ 0 & 0 & 1 &t_z \\ 0 & 0 & 0 &1 \end{array} \right)
 $$
 
@@ -62,9 +62,13 @@ $$
 \mathbf{R}(\mathbf{n},\alpha)=\cos(\alpha)\mathbf{I}+(1-\cos(\alpha))\mathbf{n}\mathbf{n}^T+\sin(\alpha) \left(\begin{array}{cc}0 &-n_z & n_y \\ n_z & 0 & -n_x \\ -n_y & n_x & 0 \end{array} \right)
 $$
 
+> 表示旋转还有欧拉角和四元数等方法，它们都能转换为旋转矩阵以便捷地应用到mesh数据上。
+{: .prompt-info }
+
 **Viewing （观测） transformation**
 - Camera transformation
 - Projection （投影） transformation
     - Orthographic （正交） projection
     - Perspective （透视） projection
 
+我的理解，视图变换（view transformation）指的是将世界坐标变换到相机坐标，相机的位置和姿态由三个参数确定，它的位移$$\mathbf{e}$$，向上方向（up direction）和观察方向（look-up direction）。而计算view矩阵$$M_{view}$$的一个观察就是，当物体随着相机一起移动时，在相机坐标系中位置不变。
