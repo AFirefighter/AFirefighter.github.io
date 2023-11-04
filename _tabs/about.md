@@ -8,4 +8,4 @@ math: true
 > 这是GGY的一些笔记
 {: .prompt-tip }
 
-图形学的世界。
+![title](/assets/source/generated.gif)
