@@ -41,11 +41,11 @@ S=\{\mathbf{p}|f(\mathbf{p})=0\}
 $$
 
 ## Neural Representation
-
+可以使用MLP来表示一个曲面。
 
 ## MVP Transformation
 
-所谓光栅化，就是指将三维空间中的物体绘制到二维的屏幕上。首先，在三维空间中描述物体的变换可以在齐次坐标下写成矩阵乘的形式，这是**模型变换**（model transformation）；然后，根据相机距离和位置，进行**视图变换**（view/camera transformation），最后**投影变换**到二维的屏幕上（projection transformation）。
+MVP变换包含三个步骤，这个过程将物体的世界坐标变换到$$[-1,1]^3$$的立方体中。首先，在三维空间中描述物体的变换可以在齐次坐标下写成矩阵乘的形式，这是**模型变换**（model transformation）；然后，根据相机视角和位置，进行**视图变换**（view/camera transformation），最后**投影变换**到二维的屏幕上（projection transformation）。
 
 **Affine Transformation**指的是物体的仿射变换，包括平移（translation），伸缩（scale）和旋转（rotation），不包括任何形变（deformation）。这三种变换可以用矩阵来表示，在3维情形下，一个3x3的矩阵能够表示旋转和伸缩的组合，但是不能表示平移。为了把平移统一到矩阵表示之中，需要使用齐次坐标，即增加一个维度，w，取值为1时表示点，取值为0时表示向量。一个w不为零的点$(x,y,z,w)$表示的点坐标为$(x/w,y/w,z/w)$。
 
